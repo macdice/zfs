@@ -557,7 +557,7 @@ zfs_replay_create(void *arg1, void *arg2, boolean_t byteswap)
 	}
 
 #ifdef __FreeBSD__
-	VOP_UNLOCK(ZTOV(dzp), 0);
+	VOP_UNLOCK1(ZTOV(dzp));
 #endif
 out:
 	if (error == 0 && zp != NULL)
@@ -605,7 +605,7 @@ zfs_replay_remove(void *arg1, void *arg2, boolean_t byteswap)
 	}
 
 #ifdef __FreeBSD__
-	VOP_UNLOCK(ZTOV(dzp), 0);
+	VOP_UNLOCK1(ZTOV(dzp));
 #endif
 	zrele(dzp);
 
@@ -642,8 +642,8 @@ zfs_replay_link(void *arg1, void *arg2, boolean_t byteswap)
 #endif
 	error = zfs_link(dzp, zp, name, kcred, vflg);
 #ifdef __FreeBSD__
-	VOP_UNLOCK(ZTOV(zp), 0);
-	VOP_UNLOCK(ZTOV(dzp), 0);
+	VOP_UNLOCK1(ZTOV(zp));
+	VOP_UNLOCK1(ZTOV(dzp));
 #endif
 	zrele(zp);
 	zrele(dzp);

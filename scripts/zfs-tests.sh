@@ -21,6 +21,7 @@
 # CDDL HEADER END
 #
 
+set -x
 BASE_DIR=$(dirname "$0")
 SCRIPT_COMMON=common.sh
 if [ -f "${BASE_DIR}/${SCRIPT_COMMON}" ]; then
